@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import { Upload, Search, Key, MapPin } from 'lucide-react';
+import { Upload, Search, Key, MapPin, Printer } from 'lucide-react';
 import './App.css';
 
 // Helper function to decode HTML entities like &#237; and &#225;
@@ -82,6 +82,10 @@ function App() {
     setSortConfig({ key, direction });
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   let items = [...data];
   
   if (searchQuery) {
@@ -124,16 +128,25 @@ function App() {
 
       <main>
         <div className="controls">
-          <label className="upload-btn">
-            <Upload size={18} style={{ marginRight: '8px' }} />
-            {fileName || 'Selecionar Planilha'}
-            <input 
-              type="file" 
-              accept=".xls,.xlsx,.csv" 
-              onChange={handleFileUpload} 
-              style={{ display: 'none' }}
-            />
-          </label>
+          <div className="controls-left">
+            <label className="upload-btn">
+              <Upload size={18} style={{ marginRight: '8px' }} />
+              {fileName || 'Selecionar Planilha'}
+              <input 
+                type="file" 
+                accept=".xls,.xlsx,.csv" 
+                onChange={handleFileUpload} 
+                style={{ display: 'none' }}
+              />
+            </label>
+
+            {data.length > 0 && (
+              <button type="button" className="print-btn" onClick={handlePrint}>
+                <Printer size={18} style={{ marginRight: '8px' }} />
+                Imprimir relatório
+              </button>
+            )}
+          </div>
 
           {data.length > 0 && (
             <div className="search-bar">

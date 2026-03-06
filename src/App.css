@@ -39,6 +39,13 @@
   gap: 1rem;
 }
 
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .upload-btn {
   display: inline-flex;
   align-items: center;
@@ -53,6 +60,23 @@
 
 .upload-btn:hover {
   background-color: #2563eb;
+}
+
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #0f172a;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.print-btn:hover {
+  background-color: #1e293b;
 }
 
 .search-bar {
@@ -143,4 +167,21 @@
   background: #f8fafc;
   border-radius: 0.5rem;
   border: 2px dashed #e2e8f0;
+}
+
+@media print {
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .table-responsive {
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
 }
